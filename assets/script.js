@@ -17,7 +17,7 @@
 
 
   
- var database = firebase.database; 
+ var dataRef = firebase.database(); 
 
  // Show current time 
  
@@ -48,7 +48,7 @@
  $("#addTrain").on("click", function(event) {
      event.preventDefault();
  
- // Grab user input from "Add Train" section //
+ // Grab user input from "Add Train" section 
  
  name = $("#trainNameInput").val().trim();
  destination = $("#trainDestination").val().trim();
@@ -60,13 +60,14 @@
  console.log(startTime);
  console.log(frequency);
  
- // Uploading train data to firebase database 
+ // Uploading train data to firebase dataRef 
  
- database.ref().push({
+ dataRef.ref().push({
      name: name, 
      destination: destination, 
      startTime: startTime, 
-     frequency: frequency
+     frequency: frequency,
+     dateAdded: firebase.database.ServerValue.TIMESTAMP
  });
  
  // clear text boxes 
@@ -90,11 +91,11 @@
  
  }); //  Event 
  
- // Creating a way to retrieve train information from train database // 
- // Creating a Firebase event for adding Train infomation to the database and a row in the HTML whenever the user // adds an entry.
+ // Creating a way to retrieve train information from train dataRef  
+ // Creating a Firebase event for adding Train infomation to the dataRef and a row in the HTML whenever the user // adds an entry.
  
  // Page loads or children are added run this function
- database.ref().on("child_added", function (childSnapshot, prevChildKey) {
+ dataRef.ref().on("child_added", function (childSnapshot, prevChildKey) {
  
      console.log(childSnapshot.val());
  
@@ -149,9 +150,9 @@
  
  row.append('<td>' + getName + "</td>")
  row.append('<td>' + getDestination + "</td>")
- row.append('<td>' + "Every " + getFrequency + " mins" + "</td>")
+ row.append('<td>' + getFrequency + " mins" + "</td>")
  row.append('<td>' + nextArrival + "</td>")
- row.append('<td>' + minutesAway +  " mins until arrival" + "</td>")
+ row.append('<td>' + minutesAway + "</td>")
  
  $("#trainTable > tbody").append(row)
  
