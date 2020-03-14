@@ -1,0 +1,31 @@
+body {
+    background-image: url("image/th (1).jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: darkcyan;
+    color:darkblue;
+}
+
+.container {
+	height: auto;
+	width: 100%;
+}
+
+.jumbotron {
+	opacity: 0.8;
+}
+
+.panel {
+	opacity: 0.8;
+}
+
+.panel > .panel-heading {
+    background-color: blue;
+    color: white;
+}
+
+#addTrain {
+    background-color: blue;
+    color: white;
+    border: darkblue;
+}

@@ -1,8 +1,5 @@
-//$(document).ready(function(){
-	
-    
 
-  // Your web app's Firebase configuration
+  //Web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyDB0tkEFKu-BqYALCYGMm6YoJQCC_ZIs0o",
     authDomain: "hw-train-31724.firebaseapp.com",
@@ -79,17 +76,6 @@
  
  }); // Event (adding Trains) 
  
- // Clear button reset 
- 
- $("#clearTrain").on("click", function(event) {
-     event.preventDefault();
- 
-     $("#trainNameInput").val("");
-     $("#trainDestination").val(""); 
-     $("#startTime").val("");
-     $("#trainFrequency").val(""); 
- 
- }); //  Event 
  
  // Creating a way to retrieve train information from train dataRef  
  // Creating a Firebase event for adding Train infomation to the dataRef and a row in the HTML whenever the user // adds an entry.
@@ -133,6 +119,8 @@
  var minutesAway = getFrequency - tRemainder; 
  
      console.log("Minutes until train " + minutesAway);
+     
+
  
  // Figure out when the next train will come by adding the minutes from arrival to current time 
  
@@ -155,6 +143,28 @@
  row.append('<td>' + minutesAway + "</td>")
  
  $("#trainTable > tbody").append(row)
+
+/*var newMinutesAway = moment().formate('LT');
+     
+       if (minutesAway !== newMinutesAway) {
+           minutesAway = newMinutesAway;
+           row('<td>' + getName + "</td>");
+           row('<td>' + getDestination + "</td>");
+           row('<td>' + getFrequency + " mins" + "</td>");
+           row('<td>' + nextArrival + "</td>");
+           row('<td>' + minutesAway + "</td>");
+        };*/
+           
+       
+ 
+
+ $("#clearTrain").on("click", function(event) {
+      event.preventDefault();
+      $('#trainTable').find("tr:gt(0)").remove();
+      reset;
+ });
+      
+
  
  
  });
